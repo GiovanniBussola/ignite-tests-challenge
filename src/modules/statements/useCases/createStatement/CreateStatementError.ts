@@ -12,4 +12,10 @@ export namespace CreateStatementError {
       super('Insufficient funds', 400);
     }
   }
+
+  export class SameUser extends AppError {
+    constructor() {
+      super('The user cannot be the same', 400);
+    }
+  }
 }

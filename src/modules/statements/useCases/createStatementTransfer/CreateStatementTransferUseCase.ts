@@ -17,6 +17,10 @@ export class CreateStatementTransferUseCase {
   }
 
   async execute({ user_id, sender_id, amount, description, type }: ICreateStatementTransferDTO): Promise<void> {
+    if (user_id === sender_id) {
+      throw new CreateStatementError.SameUser();
+    }
+
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
